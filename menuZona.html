@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Secretaría Marítima Nacional</title>
+
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+    
+</head>
+<body>
+<section id="global">
+
+
+    <div id="desplegue">
+        <div id="perfil" class="boton_perfil">
+            Perfil
+            <div id="div_comprobar" class="div_oculto">
+                <div><a href="index.html">Cerrar Sesion</a></div>
+            </div>
+        </div>  
+    </div>
+    
+        <header>
+            <div id="logo"><h1>SMN Cartilla</h1></div>
+            <div class="clearfix"></div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="menuZona.html">Menú</a></li>
+                    <li><a href="Asistencia.html">Asistencia</a></li>
+                    <li><a href="Zona.html">Solicitar sellado</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <form id="sesion" action="/ruta/del/servidor/procesamiento" method="post" enctype="multipart/form-data" onsubmit="return verificarArchivo()">
+        <label class="curp" style="font-size: 25px; color: #9A0147; font-weight: bold;">Bienvenido Al control de reclutas, Favor de familiarizarse con las ventanas.</label><br><br>
+
+        <label style="font-size: 20px;"> Dirigete a la sección de "Asistencia" Para llevar el control de los Reclutas sobre sus asistencias. <br>
+        El apartado "Solicitar Sellado" es para cuando los reclutas cumplen con su acometido, usted le podrá autorizar el sellado. </label><br><br>
+
+        
+
+
+    </form>
+</section>
+    
+</body>
+</html>

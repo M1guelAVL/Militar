@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Interfaz de Administrador - Documentos de Reclutas</title>
+
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+     <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .clearfix {
+            float: none;
+            clear: both;
+        }
+
+        #global {
+            width: 65%;
+            margin: 0px auto;
+            margin-top: 30px;
+            padding: 25px;
+            background: white;
+            box-shadow: 0px 0px 10px black;
+        }
+        #logo {
+            font-family: verdana, arial;
+            font-size: 30px;
+            letter-spacing: 2px;
+            color: #A02042;
+            text-align: center;
+            width: 410px;
+            height: 70px;
+            float: left;
+            margin-bottom: 20px;
+            line-height: 75px;
+            text-transform: uppercase;
+        }
+        #menu {
+            font-family: helvetica, arial;
+            background: #333;
+            width: 80%;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        #menu ul {
+            line-height: 47px;
+            list-style: none;
+        }
+        #menu ul li {
+            height: 46px;
+            display: inline-block;
+            transition: all 200ms;
+        }
+        #menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        #menu ul li:hover {
+            background: #A02042;
+        }
+
+        .documento {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .documento label {
+            font-weight: bold;
+        }
+        .documento a {
+            margin-right: 10px;
+        }
+        .documento button {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .aceptado {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .rechazado {
+            background-color: #a20003; /* Cambio de color a rojo */
+            color: red;
+        }
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        $(document).ready(function(){
+            // Cuando se hace clic en el botón "Perfil"
+            $('#perfil').click(function(){
+                // Alternar la visibilidad de los divs
+                $('#div_comprobar').toggle();
+                $('#div_asistencia').toggle();
+            });
+        });
+        // Función para validar un documento
+        function validarDocumento(documento) {
+            var aceptar = confirm("¿Aceptar el documento " + documento + "?");
+            if (aceptar) {
+                $("#" + documento).addClass("aceptado");
+                $("#" + documento).removeClass("rechazado");
+                $("#" + documento + " .acciones").remove();
+            } else {
+                $("#" + documento).addClass("rechazado");
+                $("#" + documento).removeClass("aceptado");
+                $("#" + documento + " .acciones").remove();
+            }
+        }
+    </script>
+</head>
+<body>
+<section id="global">
+    <div id="desplegue">
+        <div id="perfil" class="boton_perfil">
+            Perfil
+            <div id="div_comprobar" class="div_oculto">
+                <div><a href="index.html">Cerrar Sesion</a></div>
+            </div>
+        </div>  
+    </div>
+    <header>
+        <div id="logo"><h1>SMN Cartilla</h1></div>
+        <div class="clearfix"></div>
+        <nav id="menu">
+            <ul>
+                <li><a href="menuAyuntamiento.html">Menú</a></li>
+                <li><a href="Revision_Datos.html">Revision de datos </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Documentos -->
+    <div class="documento" id="curp">
+        <label class="curp">CURP</label><br>
+        <a href="curp.pdf">Verificar pdf</a><br><br>
+        <div class="acciones">
+            <button onclick="validarDocumento('curp')">Aceptar</button>
+            <button onclick="validarDocumento('curp')">Rechazar</button>
+        </div>
+    </div>
+
+    <div class="documento" id="acta">
+        <label class="Acta">Acta de nacimiento</label><br>
+        <a href="acta.pdf">Verificar Acta de nacimiento</a><br><br>
+        <div class="acciones">
+            <button onclick="validarDocumento('acta')">Aceptar</button>
+            <button onclick="validarDocumento('acta')">Rechazar</button>
+        </div>
+    </div>
+
+    <div class="documento" id="comprobante">
+        <label class="Comprobante">Comprobante de Domicilio</label><br>
+        <a href="comprobante.pdf">Verificar el comprobante de domicilio</a><br><br>
+        <div class="acciones">
+            <button onclick="validarDocumento('comprobante')">Aceptar</button>
+            <button onclick="validarDocumento('comprobante')">Rechazar</button>
+        </div>
+    </div>
+
+    <div class="documento" id="comprobanteS">
+        <label class="ComprobanteS">Comprobante de estudios</label><br>
+        <a href="ComprobanteS.pdf">Verificar comprobante de estudios</a><br><br>
+        <div class="acciones">
+            <button onclick="validarDocumento('comprobanteS')">Aceptar</button>
+            <button onclick="validarDocumento('comprobanteS')">Rechazar</button>
+        </div>
+    </div>
+
+    <div class="documento" id="ine">
+        <label class="INE">INE (Identificación Nacional Electoral)</label><br>
+        <a href="INE.pdf">Verificar INE</a><br><br>
+        <div class="acciones">
+            <button onclick="validarDocumento('ine')">Aceptar</button>
+            <button onclick="validarDocumento('ine')">Rechazar</button>
+        </div>
+    </div>
+
+    <div class="documento" id="medico">
+        <label class="Medico">Comprobante médico</label><br>
+        <a href="Medico.pdf">Verificar comprobante médico</a><br><br>
+        <div class="acciones">
+            <button onclick="validarDocumento('medico')">Aceptar</button>
+            <button onclick="validarDocumento('medico')">Rechazar</button>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

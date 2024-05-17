@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servicio Militar Nacional</title>
+
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</head>
+<body>
+    
+<section id="global">
+    <div id="desplegue">
+        <div id="perfil" class="boton_perfil">
+            Perfil
+            <div id="div_comprobar" class="div_oculto">
+                <div><a href="index.html">Cerrar Sesion</a></div>
+            </div>
+            <div id="div_asistencia" class="div_oculto">
+                <div><a href="Asistencia.html">Asistencia</a></div>
+            </div>
+        </div>  
+    </div>
+        
+    <header>
+        <div id="logo"><h1>SMN Cartilla</h1></div>
+        <div class="clearfix"></div>
+        <nav id="menu">
+            <ul>
+                <li><a href="Menu.html">Menú</a></li>
+                <li><a href="CargaD.html">Carga de Datos</a></li>
+                <li><a href="ComprobarD.html">Comprobar Datos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2 id="texto"> 
+        <p>Archivos menos de 300 kb de pesados</p>.
+        <p>Favor de llamar los archivos con los nombres correspondientes al campo Ejemplo: "curp.pdf"</p>
+    </h2>
+    <form id="cargaD" method="post" enctype="multipart/form-data" action="upload.php" onsubmit="return verificarArchivos()">
+        <label class="curp">CURP<br>
+        <input type="file" name="CURPpdf" id="CURPpdf" accept="application/pdf" /></label><br><br>
+
+        <label class="Acta">Acta de nacimiento<br>
+        <input type="file" name="Acta" id="Acta" accept="application/pdf"></label><br><br>
+
+        <label class="Comprobante">Comprobante de Domicilio<br>
+        <input type="file" name="Comprobante" id="Comprobante" accept="application/pdf"></label><br><br>
+
+        <label class="ComprobanteS">Comprobante de estudios<br>
+        <input type="file" name="ComprobanteS" id="ComprobanteS" accept="application/pdf"></label><br><br>
+
+        <label class="INE">INE (Identificación Nacional Electoral)<br>
+        <input type="file" name="INE" id="INE" accept="application/pdf"></label><br><br>
+
+        <label class="Medico"> Comprobante médico<br>
+        <input type="file" name="ComprobanteM" id="ComprobanteM" accept="application/pdf"></label><br><br>
+
+        <label class="Foto">Fotografía<br>
+        <input type="file" name="foto" id="foto" accept="image/jpeg, image/png"></label><br><br>
+
+        <input type="submit" value="Enviar Archivo" id="SubirArchivo" />
+    </form>
+
+</section>
+
+<script>
+function verificarArchivos() {
+    const archivos = document.querySelectorAll('input[type="file"]');
+    for (let i = 0; i < archivos.length; i++) {
+        let file = archivos[i].files[0];
+        if (file) {
+            let fileSize = file.size / 1024; // en KB
+            let fileType = file.type;
+            if ((fileType === "application/pdf" && fileSize > 300) || 
+                ((fileType === "image/jpeg" || fileType === "image/png") && fileSize > 2048)) {
+                alert(`El archivo ${file.name} supera el límite de tamaño permitido.`);
+                return false;
+            }
+        }
+    }
+    return true;
+}
+</script>
+
+</body>
+</html>

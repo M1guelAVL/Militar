@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interfaz de Administrador</title>
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+     <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <style>
+        #despliegue{
+            position: absolute;
+            background: rgba(51,51,51,0.7);
+            width: 50px;
+            height: 100px;
+        }
+        #perfil{
+            width: 250px;
+            height: 35px;
+            border: 1px solid black;
+            border-radius: 12px;
+            display: block;
+            margin: 0px auto;
+            margin-top: 15px;
+            margin-right: 0px;
+            cursor: pointer;
+            background: #ddd;
+            text-align: center;
+            box-shadow: 0px 0px 5px #A02042;
+            line-height: 35px;
+            font-size: 20px;
+            font-family:arial;
+            letter-spacing: 1px;
+        }   
+        #perfil a{
+            text-decoration: none;
+            color: black;
+        }
+        #perfil:hover{
+            background: #ccc;
+            transition: 300ms;
+        }       
+        /* Estilos para los submenús retractiles */
+        .submenu-content {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .submenu-content.active {
+            display: block;
+        }
+
+        .submenu h2 {
+            cursor: pointer;
+        }
+
+        /* Estilos para la lista de usuarios */
+        #listaUsuarios {
+            margin-top: 20px;
+        }
+
+        #listaUsuarios li {
+            margin-bottom: 5px;
+        }
+    </style> 
+</head>
+<body>
+    <section id="global">
+    <div id="desplegue">
+        <div id="perfil" class="boton_perfil">
+            Perfil
+            <div id="div_comprobar" class="div_oculto">
+                <div><a href="index.html">Cerrar Sesion</a></div>
+            </div>
+        </div>  
+    </div>
+    
+        <header>
+            <div id="logo"><h1>SMN Cartilla</h1></div>
+            <div class="clearfix"></div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="menuAdmin.html">Menu</a></li>
+                    <li><a href="CargaAdmin.html">Carga de Usuarios</a></li>
+                    <li><a href="BajaAdmin.html">Baja de usuarios</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <div class="submenus">
+        <div class="submenu">
+            <h2 onclick="toggleSubmenu('alta')">Carga de Usuarios</h2>
+            <form id="altaUsuarioForm" class="submenu-content alta">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" required><br>
+                <label for="curp">CURP:</label>
+                <input type="text" id="curp" name="curp" required><br>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required><br>
+                <label for="cargo">Cargo:</label>
+                <input type="number" id="cargo" name="cargo" required><br>
+                <input type="submit" value="AltaUsuario" onclick="agregarUsuario()">
+            </form>
+        </div>
+
+        
+    </div>
+</section>
+    
+
+    <script>
+        $(document).ready(function(){
+            // Cuando se hace clic en el botón "Perfil"
+            $('#perfil').click(function(){
+                // Alternar la visibilidad de los divs
+                $('#div_comprobar').toggle();  
+            });
+        });
+    
+        // Función para agregar un usuario
+        function agregarUsuario() {
+            var correo = document.getElementById('correo').value;
+            var curp = document.getElementById('curp').value;
+            var contrasena = document.getElementById('contrasena').value;
+            var cargoTexto  = document.getElementById('cargo').value;
+
+            var cargo = convertir(cargoTexto);
+
+            var datos = {
+                correo: correo,
+                curp: curp,
+                pass: contrasena,
+                cargo: cargo
+            };
+            var datosJSON = JSON.stringify(datos);
+            localStorage.setItem(curp, datosJSON);
+
+            // Limpiar el formulario
+            document.getElementById('altaUsuarioForm').reset();
+
+            // Actualizar la lista de usuarios mostrada
+            mostrarUsuarios();
+        }
+
+        function convertir(cadena) {
+            if(cadena === "1")
+                return 1;
+            if(cadena === "2")
+                return 2;
+            if(cadena === "3")
+                return 3;
+            if(cadena === "4")
+                return 4;    
+        }
+
+        // Función para mostrar la lista de usuarios
+        function mostrarUsuarios() {
+            
+
+            // Obtener lista de usuarios del almacenamiento local
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            // Mostrar cada usuario en la lista
+            usuarios.forEach(usuario => {
+                const li = document.createElement('li');
+                li.textContent = `Correo: ${usuario.correo}, CURP: ${usuario.curp}, Cargo: ${usuario.cargo}`;
+                
+                // Botón para eliminar usuario
+                const btnEliminar = document.createElement('button');
+                btnEliminar.textContent = 'Eliminar';
+                btnEliminar.onclick = function() {
+                    eliminarUsuario(usuario);
+                };
+
+                li.appendChild(btnEliminar);
+                
+            });
+        }
+
+        // Función para eliminar un usuario
+        function eliminarUsuario(usuario) {
+            // Obtener lista de usuarios del almacenamiento local
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            // Filtrar la lista para eliminar el usuario seleccionado
+            usuarios = usuarios.filter(u => u.correo !== usuario.correo);
+
+            // Actualizar la lista de usuarios en el almacenamiento local
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+            // Actualizar la lista de usuarios mostrada
+            mostrarUsuarios();
+        }
+
+        // Función para alternar la visibilidad de los submenús
+        function toggleSubmenu(submenuId) {
+            const submenus = document.querySelectorAll('.submenu-content');
+            submenus.forEach(submenu => {
+                if (submenu.classList.contains(submenuId)) {
+                    submenu.classList.toggle('active');
+                } else {
+                    submenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Mostrar los usuarios al cargar la página
+        mostrarUsuarios();
+        
+    </script>
+</body>
+</html>

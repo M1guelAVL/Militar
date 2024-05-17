@@ -1,0 +1,216 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.clearfix{
+	float: none;
+	clear: both;
+}
+
+#global{
+	width: 65%;
+	margin: 0px auto;
+	margin-top: 30px;
+	padding: 25px;
+	background: white;
+	box-shadow: 0px 0px 10px black;
+}
+#logo{
+	font-family:verdana,arial;
+	font-size: 30px;
+	letter-spacing: 2px;
+	color: #A02042;
+	text-align: center;
+	width: 410px;
+	height: 70px;
+	float: left;
+	margin-bottom: 20px;
+	line-height: 75px;
+	text-transform: uppercase; 
+}
+#menu{
+	font-family: helvetica, arial;
+	background: #333;
+	width: 80%;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+}
+#menu ul{
+	line-height: 47px;
+	list-style: none;
+}
+#menu ul li{
+	height: 46px;
+	display: inline-block;
+	transition: all 400ms;
+}
+#menu a{
+	display: block;
+	color: white;
+	text-decoration: none;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#box{
+	width: 60%;
+	float: left;
+	margin-top: 20px;
+	cursor: pointer;
+}
+#menu2{
+	font-family: helvetica, arial;
+	background: #333;
+	width: 100%;
+	margin-bottom: 20px;
+	color: black;
+	background: #ddbbaa;
+	font-size: 18px;
+	letter-spacing: 1px;
+	margin-top: 20px;
+	cursor: default;
+	line-height: 25px;
+}
+
+#menu2 p{
+	margin-left: 10px;
+	background: default;
+}
+#menu2 ul{
+	background: default;
+	float: none;
+	margin-left: 30px;
+	color: black;
+}
+#menu2 .ui-accordion-header::before {
+    background-color: #A02042; 
+}
+#texto{
+	font-family: helvetica, arial;
+	color: black;
+	font-size: 15px;
+}
+#curp,
+#Rcurp,
+#Ocurp{
+	text-transform: uppercase;
+}
+
+form input[type = "text"],
+form input[type = "password"],
+form input[type = "email"],
+form input[type = "number"],
+select{
+	padding: 5px;
+	border-radius: 2px;
+	border-color: #555;
+	border: 1px solid #555;
+	width: 60%;
+	margin-bottom: 10px;
+	/*box-shadow: 0px 0px 2px gray;*/
+	margin-top: 5px;
+}
+form input[type = "submit"]{
+	border-radius: 5px;
+	background: #eee;
+	padding: 5px;
+	border: 1px solid #ccc;
+	color: #333;
+	cursor: pointer;
+}
+#olvido{
+	font-family: helvetica, arial;
+	color: #051060;
+	font-size: 13px;
+	text-align: right;
+}
+#menu ul li:hover{
+	background: #A02042;
+}
+
+#sedena{
+	width: 75%;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50; /* Color de fondo */
+    color: #333; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    font-size: 14px; /* Tamaño del texto */
+}
+
+input[type="submit"]:hover {
+    background-color: #bbb;
+    transition: all 350ms;
+}
+#cargaD label{
+	cursor: default;
+	background: default;
+}
+#cargaD input[type="file"] {
+    background-color: #A02042; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: default; /* Cambiar cursor al pasar sobre el botón */
+    font-size: 14px; /* Tamaño del texto */
+}
+#despliegue{
+	position: absolute;
+	background: rgba(51,51,51,0.7);
+	width: 50px;
+	height: 100px;
+}
+#perfil{
+	width: 250px;
+	height: 35px;
+	border: 1px solid black;
+	border-radius: 12px;
+	display: block;
+	margin: 0px auto;
+	margin-top: 15px;
+	margin-right: 0px;
+	cursor: pointer;
+	background: #ddd;
+	text-align: center;
+	box-shadow: 0px 0px 5px #A02042;
+	line-height: 35px;
+	font-size: 20px;
+	font-family:arial;
+	letter-spacing: 1px;
+}
+#perfil a{
+	text-decoration: none;
+	color: black;
+}
+#perfil:hover{
+	background: #ccc;
+	transition: 300ms;
+}
+#texto{
+	text-shadow: 5px;
+	font-size: 18px;
+	font-family: arial;
+	color: #fff;
+}
+#texto p{
+	text-shadow: 5px;
+	font-size: 18px;
+	font-family: arial;
+	color: #555;
+}
+.div_oculto {
+    display: none;
+    margin-top: 5px; /* Añadido para separar los divs */
+}
+
+.div_oculto div {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

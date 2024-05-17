@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Asistencia</title>
+
+    <!--JQuery-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <!-- MOMENT JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/locale/es-mx.min.js"></script>
+
+    <style>
+  
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .contador {
+            font-weight: bold;
+            color: red;
+        }
+        #guardar {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #guardar:hover {
+            background-color: #45a049;
+        }
+        .lugar {
+            width: 150px; 
+        }
+    </style>
+</head>
+<body>
+    <section id="global">
+        <div id="desplegue">
+        <div id="perfil" class="boton_perfil">
+            Perfil
+            <div id="div_comprobar" class="div_oculto">
+                <div><a href="index.html">Cerrar Sesion</a></div>
+            </div>
+        </div>  
+    </div>
+    
+        <header>
+            <div id="logo"><h1>SMN Cartilla</h1></div>
+            <div class="clearfix"></div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="menuZona.html">Menú</a></li>
+                    <li><a href="Asistencia.html">Asistencia</a></li>
+                    <li><a href="Zona.html">Solicitar sellado</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="box">
+            <h2><br>Asistencia</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número de Control</th>
+                        <th class="lugar">Lugar</th> 
+                        <th>Fecha</th> 
+                        <th>Asistencia</th>
+                        <th>Faltas</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-asistencia">
+                </tbody>
+            </table>
+            <button id="guardar">Guardar Asistencias</button>
+        </div>
+    </section>
+    <script>
+        function generarFilas() {
+            var tbody = document.getElementById("lista-asistencia");
+            var numPersonas = 15; 
+
+            for (var i = 1; i <= numPersonas; i++) {
+                var fila = `
+                    <tr>
+                        <td>${i}</td>
+                        <td>
+                            <select>
+                                <option value="Tampico">Tampico</option>
+                                <option value="Madero">Madero</option>
+                                <option value="Altamira">Altamira</option>
+                            </select>
+                        </td>
+                        <td><span id="fecha-${i}"></span></td>
+                        <td><input type="checkbox"></td>
+                        <td class="contador">0</td>
+                    </tr>
+                `;
+                tbody.innerHTML += fila;
+            }
+            actualizarFecha(); 
+        }
+        function actualizarFecha() {
+            var reloj = moment().format("DD MMMM YYYY");
+            for (var i = 1; i <= 15; i++) {
+                document.getElementById("fecha-" + i).textContent = reloj;
+            }
+        }
+        window.addEventListener("load", generarFilas);
+        document.getElementById("guardar").addEventListener("click", function() {
+            alert("¡Asistencias guardadas!");
+        });
+    </script>
+    
+</body>
+</html>

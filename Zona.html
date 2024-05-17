@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz de Zona o Militar</title>
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <style>
+        .solicitud {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .aceptada {
+            background-color: #8BC34A; /* Verde */
+        }
+        .rechazada {
+            background-color: #FF5722; /* Rojo */
+        }
+    </style>
+</head>
+<body>
+    <section id="global">
+    <div id="desplegue">
+        <div id="perfil" class="boton_perfil">
+            Perfil
+            <div id="div_comprobar" class="div_oculto">
+                <div><a href="Index.html">Cerrar Sesion</a></div>
+            </div>
+        </div>  
+    </div>
+    
+        <header>
+            <div id="logo"><h1>SMN Cartilla</h1></div>
+            <div class="clearfix"></div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="menuZona.html">Menú</a></li>
+                    <li><a href="Asistencia.html">Asistencia</a></li>
+                    <li><a href="Zona.html">Solicitar sellado</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+    <div id="solicitudesSellado">
+        <!-- Aquí se mostrarán las solicitudes pendientes -->
+    </div>
+    </section>
+    <script>
+        // Supongamos que tienes un array de objetos con las solicitudes pendientes
+        const solicitudesPendientes = [
+            { id: 1, motivo: "Motivo de la solicitud 1", estado: "" },
+            { id: 2, motivo: "Motivo de la solicitud 2", estado: "" },
+            { id: 3, motivo: "Motivo de la solicitud 3", estado: "" }
+        ];
+
+        // Función para mostrar las solicitudes pendientes
+        function mostrarSolicitudesPendientes() {
+            const solicitudesContainer = document.getElementById("solicitudesSellado");
+            solicitudesContainer.innerHTML = "";
+
+            solicitudesPendientes.forEach(solicitud => {
+                const solicitudElement = document.createElement("div");
+                solicitudElement.classList.add("solicitud");
+                if (solicitud.estado === "aceptada") {
+                    solicitudElement.classList.add("aceptada");
+                } else if (solicitud.estado === "rechazada") {
+                    solicitudElement.classList.add("rechazada");
+                }
+                solicitudElement.innerHTML = `
+                    <p><strong>ID:</strong> ${solicitud.id}</p>
+                    <p><strong>Motivo:</strong> ${solicitud.motivo}</p>
+                    <button onclick="aceptarSolicitud(${solicitud.id})">Aceptar</button>
+                    <button onclick="rechazarSolicitud(${solicitud.id})">Rechazar</button>
+                    <button onclick="abrirArchivo('${solicitud.id}')">Abrir Archivo</button>
+                `;
+                solicitudesContainer.appendChild(solicitudElement);
+            });
+        }
+
+        // Función para aceptar una solicitud
+        function aceptarSolicitud(id) {
+            const solicitud = solicitudesPendientes.find(s => s.id === id);
+            solicitud.estado = "aceptada"; // Cambia el estado de la solicitud
+            mostrarSolicitudesPendientes();
+        }
+
+        // Función para rechazar una solicitud
+        function rechazarSolicitud(id) {
+            const solicitud = solicitudesPendientes.find(s => s.id === id);
+            solicitud.estado = "rechazada"; // Cambia el estado de la solicitud
+            mostrarSolicitudesPendientes();
+        }
+
+        // Función para abrir el archivo de texto con la solicitud desde la carpeta "archivos"
+        function abrirArchivo(id) {
+            const nombreArchivo = `datos.txt`; // Nombre del archivo dependiendo del ID de la solicitud
+            const urlArchivo = `archivos/${nombreArchivo}`; // Ruta completa del archivo
+            window.open(urlArchivo);
+        }
+
+        // Mostrar las solicitudes pendientes al cargar la página
+        window.onload = function() {
+            mostrarSolicitudesPendientes();
+        };
+    </script>
+</body>
+</html>
+
+

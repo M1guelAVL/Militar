@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Secretaría Marítima Nacional</title>
+
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+    
+</head>
+<body>
+<section id="global">
+
+
+    <div id="desplegue">
+        <div id="perfil" class="boton_perfil">
+            Perfil
+            <div id="div_comprobar" class="div_oculto">
+                <div><a href="index.html">Cerrar Sesion</a></div>
+            </div>
+        </div>  
+    </div>
+    <script>
+        // Obtener el valor del CURP de la URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var curp = urlParams.get('curp');
+
+        // Actualizar el contenido del elemento <span> con el valor del CURP
+        // document.getElementById("curpSpan").textContent = curp;
+    </script>
+        <header>
+            <div id="logo"><h1>SMN Cartilla</h1></div>
+            <div class="clearfix"></div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="Menu.html">Menú</a></li>
+                    <li><a href="CargaD.html">Carga de Datos</a></li>
+                    <li><a href="ComprobarD.html">Comprobar Datos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <form id="sesion" action="/ruta/del/servidor/procesamiento" method="post" enctype="multipart/form-data" onsubmit="return verificarArchivo()">
+        <label class="curp" style="font-size: 25px; color: #9A0147; font-weight: bold;">Bienvenido a la plataforma para registrarte para asistir al servicio militar</label><br><br>
+
+        <label style="font-size: 20px;"> Dirigete a la sección de "Carga de datos" y porfavor sigue los siguientes pasos para completar tu registro: </label><br><br>
+
+        <label>Ten a la mano los siguientes documentos: </label><br><br>
+
+        <ul>
+        <li>Acta de nacimiento (original y copia).</li>
+        <li>Identificación oficial con fotografía y copia(INE, pasaporte, cédula profesional, etc).</li>
+        <li>Clave Única de Registro de Población (CURP) original y copia.</li>
+        <li>Comprobante de domicilio.</li>
+        <li>Comprobante del grado máximo de estudios realizados.</li>
+        <li>
+            4 fotografías recientes:
+            <ul style="margin-left: 20px;">
+                <li>Corte de pelo tipo “casquete corto”.</li>
+                <li>De frente, a color o blanco y negro.</li>
+                <li>Con playera de cuello redondo blanca.</li>
+            </ul>
+        </li>
+    </ul><br>
+
+    <label style="font-size: 20px;">Una vez haber subido los documentos anteriormente mencionados por favor de checar en la sección de "Comprobar Datos" si los datos son correctos y de no ser así favor de modificarlos en "Carga de Datos" </label><br><br>
+
+
+    </form>
+</section>
+    
+</body>
+</html>
